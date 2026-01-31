@@ -22,43 +22,49 @@ export default function Home() {
       {/* Blog Posts Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <h2 className="text-3xl font-bold text-gray-900 mb-8">Latest Posts</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {posts.map((post) => (
             <Link 
               key={post.id} 
               href={`/posts/${post.id}`}
               className="group"
             >
-              <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
-                <div className="h-48 bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
-                  <span className="text-white text-4xl font-bold">
+              <article className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300 aspect-square flex flex-col border-2 border-gray-100">
+                {/* Top section with gradient */}
+                <div className="h-2/5 bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center relative overflow-hidden">
+                  <span className="text-white text-5xl font-bold z-10">
                     {post.title.charAt(0)}
                   </span>
+                  <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
                 </div>
-                <div className="p-6 flex-grow flex flex-col">
-                  <div className="flex items-center text-sm text-gray-500 mb-3">
-                    <span className="bg-primary-100 text-primary-800 px-2 py-1 rounded-full text-xs font-medium">
-                      {post.category}
-                    </span>
-                    <span className="mx-2">•</span>
-                    <time dateTime={post.date}>
-                      {new Date(post.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </time>
-                    <span className="mx-2">•</span>
-                    <span>{post.readTime}</span>
+                
+                {/* Content section */}
+                <div className="p-5 flex-grow flex flex-col justify-between">
+                  <div>
+                    <div className="mb-3">
+                      <span className="bg-primary-100 text-primary-800 px-2.5 py-1 rounded-full text-xs font-semibold">
+                        {post.category}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 line-clamp-3 mb-3">
+                      {post.excerpt}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-gray-600 flex-grow">{post.excerpt}</p>
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <span className="text-primary-600 font-medium group-hover:underline">
-                      Read more →
-                    </span>
+                  
+                  {/* Bottom info */}
+                  <div className="pt-3 border-t border-gray-200">
+                    <div className="flex items-center justify-between text-xs text-gray-500">
+                      <time dateTime={post.date}>
+                        {new Date(post.date).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                        })}
+                      </time>
+                      <span>{post.readTime}</span>
+                    </div>
                   </div>
                 </div>
               </article>
