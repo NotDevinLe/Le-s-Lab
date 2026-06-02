@@ -35,7 +35,7 @@ export default function Home() {
           <aside>
             <div className="aspect-square rounded-lg mb-5 overflow-hidden bg-gray-100">
               <img
-                src={`${basePath}/profile.jpg`}
+                src={`${basePath}/profile.png`}
                 alt="devin le"
                 className="w-full h-full object-cover"
               />
